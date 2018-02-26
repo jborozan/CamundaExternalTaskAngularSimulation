@@ -8,10 +8,17 @@ import { CamundaService } from './camunda.service';
 })
 export class AppComponent {
   title = 'app';
+  workId: string;
+  topic: string;
+  url: string;
+  duration: string;
+  maxTask: string;
 
   constructor(private camundaService: CamundaService) {}
 
   startCamunda() {
-    this.camundaService.startCamunda();
+    console.log('WorkId: ' + this.workId + 'Max Id: ' + this.maxTask +
+     ' Topic: ' + this.topic + ' URL: ' + this.url + ' Duration: ' + this.duration);
+    this.camundaService.startCamunda(this.workId, this.topic, this.url, this.duration);
   }
 }

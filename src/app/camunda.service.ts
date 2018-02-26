@@ -7,10 +7,20 @@ export class CamundaService {
 
   constructor(private http: Http) { }
 
-  startCamunda() {
-    console.log('start camunda');
+  startCamunda(workId: string, maxTask: string, topic: string, url: string, duration: string) {
+    console.log('Service: ' + ' worker id: ' + workId + 'maxTask:' + maxTask +
+    ' topic: ' + topic + ' url: ' + url + ' duration: ' + duration);
 
-   // this.http.get('http://localhost:8080/engine-rest/process-definition/key/FlowingTripBookingSaga/start', options);
+   const req = this.http.post(url + '/external-task/fetchAndLock', {
+      topic: topic,
+      workId: workId
+    })
+    .subscribe(
+      res => {
+        console.log(res);
+      }
+    );
+
   }
 
 }
