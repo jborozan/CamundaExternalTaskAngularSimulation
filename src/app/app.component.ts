@@ -19,6 +19,6 @@ export class AppComponent {
   startCamunda() {
     console.log('WorkId: ' + this.workId + 'Max Id: ' + this.maxTask +
      ' Topic: ' + this.topic + ' URL: ' + this.url + ' Duration: ' + this.duration);
-    this.camundaService.startCamunda(this.workId, this.topic, this.url, this.duration);
+    this.camundaService.startCamunda(this.workId, this.maxTask, this.topic, this.url, this.duration);
   }
 }

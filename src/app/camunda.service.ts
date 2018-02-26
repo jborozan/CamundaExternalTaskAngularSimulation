@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Http, RequestOptions } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 
 @Injectable()
 export class CamundaService {
 
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
 
   startCamunda(workId: string, maxTask: string, topic: string, url: string, duration: string) {
     console.log('Service: ' + ' worker id: ' + workId + 'maxTask:' + maxTask +
