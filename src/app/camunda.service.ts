@@ -4,23 +4,30 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class CamundaService {
-
+  
   constructor(private http: HttpClient) { }
 
-  startCamunda(workId: string, maxTask: string, topic: string, url: string, duration: string) {
-    console.log('Service: ' + ' worker id: ' + workId + 'maxTask:' + maxTask +
+  fetchAndLockCamundaTasks(workId: string, maxTask: number, topic: string, url: string, duration: number) {
+    console.log('CamundaService.fetchAndLockCamundaTasks:' + ' worker id: ' + workId + ' maxTask: ' + maxTask +
     ' topic: ' + topic + ' url: ' + url + ' duration: ' + duration);
 
    const req = this.http.post(url + '/external-task/fetchAndLock', {
-      topic: topic,
-      workId: workId
-    })
-    .subscribe(
-      res => {
-        console.log(res);
-      }
-    );
+      "workerId": workId,
+      "maxTasks": maxTask,
+      "topics": [{"topicName": topic, "lockDuration": duration*1000}]
+    });
+    
+    return req;
+  }
+    
+   completeCamundaTasks(url: string, workId: string, taskId: string) {
+    console.log('CamundaService.completeCamundaTasks:' + ' url: ' + url + ' worker id: ' + workId + ' taskId: ' + taskId);
+           
+    const req = this.http.post(url + '/external-task/' + taskId + '/complete', {
+      "workerId": workId
+    });
 
+     return req;
   }
 
 }

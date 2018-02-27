@@ -1,27 +1,38 @@
 <mat-card class="card">
   <mat-card-header>
-    <mat-card-title>Camunda External Tasks</mat-card-title>
+    <mat-card-title>Camunda External Tasks Simulation</mat-card-title>
   </mat-card-header>
   <br>
   <form class="camunda-form">
+    <mat-form-field class="camunda-form-full-width">
+        <input matInput placeholder="URL" [(ngModel)]="url"  [ngModelOptions]="{standalone: true}"/>
+    </mat-form-field>
     <mat-form-field  class="camunda-form-full-width">
-        <input matInput placeholder="Worker ID" [(ngModel)]="workId"  [ngModelOptions]="{standalone: true}">
+        <input matInput placeholder="Worker ID" [(ngModel)]="workId"  [ngModelOptions]="{standalone: true}"/>
     </mat-form-field>
     <mat-form-field  class="camunda-form-full-width">
-        <input matInput placeholder="Max Task" [(ngModel)]="maxTask"  [ngModelOptions]="{standalone: true}">
+        <input matInput placeholder="Max Task" [(ngModel)]="maxTask"  [ngModelOptions]="{standalone: true}"/>
     </mat-form-field>
     <mat-form-field class="camunda-form-full-width">
-      <input matInput placeholder="Topic" [(ngModel)]="topic"  [ngModelOptions]="{standalone: true}">
+      <input matInput placeholder="Topic" [(ngModel)]="topic"  [ngModelOptions]="{standalone: true}"/>
     </mat-form-field>
     <mat-form-field class="camunda-form-full-width">
-        <input matInput placeholder="Duration" [(ngModel)]="duration"  [ngModelOptions]="{standalone: true}">
-    </mat-form-field>
-    <mat-form-field class="camunda-form-full-width">
-        <input matInput placeholder="URL" [(ngModel)]="url"  [ngModelOptions]="{standalone: true}">
+        <input matInput placeholder="Duration (s)" [(ngModel)]="duration"  [ngModelOptions]="{standalone: true}"/>
     </mat-form-field>
   </form>
   <mat-card-actions>
-    <button mat-button (click)="startCamunda()">Complete</button>
+    <button mat-button (click)="fetchAndLockCamundaTasks()">Fetch and Lock External Tasks</button>
   </mat-card-actions>
+
+	<ul *ngIf="tasks">
+	   <li *ngFor="let task of tasks" class="camunda-form">
+	      {{task.id}}
+	   </li>
+	</ul>
+
+    <mat-card-actions>
+    <button mat-button (click)="completeCamundaTasks()">Complete Task(s)</button>
+  </mat-card-actions>
+  
 </mat-card>
 
