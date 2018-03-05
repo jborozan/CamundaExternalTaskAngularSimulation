@@ -25,3 +25,26 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Extra: Python Script for CLI
+
+There is a possiblity to alternatively run Python script instead of Angular Frontend with same funtionality.
+
+### Install Phyton
+
+Install Python and adapt PATH variable to point to it (this task is actually trivial for both Linux/Win)
+
+### Download Python Requests and JSON libraries
+
+For example on Windows:
+```
+python.exe -m pip install requests
+python.exe -m pip install simplejson
+```
+
+### Run the script
+
+For example on Windows:
+```
+python.exe ExternalTaskScript.py
+```
